@@ -1,7 +1,7 @@
 # rsfc-fnirs
-## These MATLAB codes reproduce the simulation results of the article "Correction of global physiology in resting-state functional near-infrared-spectroscopy" by Pradyumna Lanka, Heather Bortfeld & Theodore J. Huppert.
+### These MATLAB codes reproduce the simulation results of the article "Correction of global physiology in resting-state functional near-infrared-spectroscopy" by Pradyumna Lanka, Heather Bortfeld & Theodore J. Huppert.
 
-####These codes require the NIRS Brain AnalyzIR toolbox to run. The toolbox can be downloaded from  https://github.com/huppertt/nirs-toolbox. 
+#### These codes require the NIRS Brain AnalyzIR toolbox to run. The toolbox can be downloaded from  https://github.com/huppertt/nirs-toolbox. 
 Then please add the toolbox to the MATLAB path
 
 ### Description of files
