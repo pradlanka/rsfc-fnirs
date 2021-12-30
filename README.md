@@ -24,12 +24,15 @@ Generates fig 8 in the manuscript. This code compares MVGC methods controlling f
 Generates fig 1 in the manuscript. This code visually compares Pearson's correlation, AR correlation & AR partial correlation with the ground truth in their effectiveness to correct for temporal autocorrelation and global signal-induced spatial covariance.
 
 #### TSfig.m
-
 Generates fig 2 in the manuscript. The code generates plots that show the raw signal intensity for the simulated data as well as the normalized covariance matrix for the channels. Rows show simulated data with just (A) temporal autocorrelation, (B) with both temporal autocorrelation and global systemic physiology, and (C) with temporal autocorrelation, global systemic physiology, and motion artifacts. It also generates the channel covariance matrix.
 
 
 ### Function folder:
+
 grangercausality: A wrapper function that calls mymvgc
+
 mymvgc: Function runs multivariate granger causality analysis. Depending on the parameters also runs modified MVGC.
+
 partial_corr: Function runs partial correlation analysis for assessing zero-lag connectivity between channels
+
 simData_connectivity_shortsep: Simulates Resting-state fNIRS data with a probe containing short separation channels. The simulated data mimics RS-fNIRS data and contains both global physiological noise and temporal autocorrelation with similar statistical properties as experimental RS-fNIRS data.
