@@ -28,10 +28,10 @@ Generates fig 2 in the manuscript. The code generates plots that show the raw si
 
 ### Function folder:
 
-**grangercausality:** A wrapper function that calls mymvgc
+**grangercausality:** A wrapper function that calls mymvgc.
 
-**mymvgc:** Function runs multivariate granger causality analysis. Depending on the parameters also runs modified MVGC.
+**mymvgc:** Function runs multivariate granger causality analysis. Depending on the input arguments also runs modified MVGC.
 
-**partial_corr:** Function runs partial correlation analysis for assessing zero-lag connectivity between channels
+**partial_corr:** Function runs partial correlation analysis for assessing zero-lag connectivity between channels.
 
 **simData_connectivity_shortsep:** Simulates Resting-state fNIRS data with a probe containing short separation channels. The simulated data mimics RS-fNIRS data and contains both global physiological noise and temporal autocorrelation with similar statistical properties as experimental RS-fNIRS data.
