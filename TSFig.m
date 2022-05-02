@@ -9,9 +9,9 @@ Curr_Folder = pwd; % Get path of working directory
 
 % Please download the toolbox and add to path
 
-addpath(genpath('nirs-toolbox')); % Add toolbox to path
+%addpath(genpath('nirs-toolbox')); % Add toolbox to path
 
-addpath(genpath('functions')); % Add to path folder containing important functions]
+%addpath(genpath('functions')); % Add to path folder containing important functions]
 
 % setting parameters
 pmax=10;  % model order to use for the AR model
@@ -23,7 +23,7 @@ SNR2 = 100;  % ratio of  brain signal to random noise
 
 % Generating non-spatial noise
 raw0 =nirs.testing.simARNoise_shortsep(probe,t, pmax, 0);
-e0=raw0 .data;
+e0=raw0.data;
 % Generating spatially correlated global noise
 raw150=nirs.testing.simARNoise_shortsep(probe,t, pmax, 150);
 e150=raw150.data;
@@ -139,25 +139,45 @@ raw3 = nirs.testing.simMotionArtifact(raw2);
 
 Fs = raw1.Fs; % Sampling rate
 
+% %Preprocessing
+job = nirs.modules.OpticalDensity;
+job = nirs.modules.BeerLambertLaw(job);
+job = nirs.modules.KeepTypes(job);
+job.types = 'hbo';
+job=nirs.modules.RemoveShortSeperations(job);
+
+% Running the pipeline
+% Preprocessed data without short channels
+hboRest1 = job.run(raw1);
+hboRest2 = job.run(raw2);
+hboRest3 = job.run(raw3);
+
+
 % % Visualizaing raw data for the three conditions
 title1 = 'W temporal autocorr but wo global phys noise or motion artifacts';
-figure('Name',title1,'NumberTitle','off','Position',[100 100 1200 200]); plot(raw1.data((1*Fs:round(Fs):200*Fs), 5),'LineWidth',2);ylim([30,45]);
-hold on;   yline(35, 'r--', 'LineWidth', 3); hold on;   yline(40, 'r--', 'LineWidth', 3);
-xlabel('Time (t) in sec'), ylabel('Intensity'); ax =gca; ax.FontSize = 16; ax.FontWeight = 'bold';
+figure('Name',title1,'NumberTitle','off','Position',[100 100 1200 200]); plot((1/Fs:1/Fs:200), hboRest1.data((1:200*Fs), 5),'b','LineWidth',2);ylim([-150,150]);
+hold on; plot((1/Fs:1/Fs:200), hboRest1.data((1:200*Fs), 8),'g','LineWidth',2);
+hold on;   yline(-120, 'r--', 'LineWidth', 3); hold on;   yline(120, 'r--', 'LineWidth', 3);
+xlabel('Time (t) in sec'), ylabel('HbO conc.'); ax =gca; ax.FontSize = 16; ax.FontWeight = 'bold';
 title2 = 'W temporal autocorr and global phys noise but wo motion artifacts';
-figure('Name',title2,'NumberTitle','off','Position',[100 100 1200 200]); plot(raw2.data((1*Fs:round(Fs):200*Fs), 5),'LineWidth',2);ylim([30,45]);
-hold on;   yline(35, 'r--', 'LineWidth', 3); hold on;   yline(40, 'r--', 'LineWidth', 3);
-xlabel('Time (t) in sec'), ylabel('Intensity'); ax =gca; ax.FontSize = 16; ax.FontWeight = 'bold';
+figure('Name',title2,'NumberTitle','off','Position',[100 100 1200 200]); plot((1/Fs:1/Fs:200), hboRest2.data((1:200*Fs), 5),'b','LineWidth',2);ylim([-150,150]);
+hold on; plot((1/Fs:1/Fs:200), hboRest2.data((1:200*Fs), 8),'g','LineWidth',2);
+hold on;   yline(-120, 'r--', 'LineWidth', 3); hold on;   yline(120, 'r--', 'LineWidth', 3);
+xlabel('Time (t) in sec'), ylabel('HbO conc.'); ax =gca; ax.FontSize = 16; ax.FontWeight = 'bold';
 title3 = 'W temporal autocorr, global phys noise and motion artifacts';
-figure('Name',title3,'NumberTitle','off', 'Position',[100 100 1200 200]); plot(raw3.data((1*Fs:round(Fs):200*Fs), 5),'LineWidth',2);ylim([0,80]);
-hold on;   yline(30, 'r--', 'LineWidth', 3); hold on;   yline(35, 'r--', 'LineWidth', 3);
-xlabel('Time (t) in sec'), ylabel('Intensity'); ax =gca; ax.FontSize = 16; ax.FontWeight = 'bold';
+figure('Name',title3,'NumberTitle','off', 'Position',[100 100 1200 200]); plot((1/Fs:1/Fs:200),hboRest3.data((1:200*Fs), 5),'b','LineWidth',2);ylim([-600,600]);
+hold on; plot((1/Fs:1/Fs:200),hboRest3.data((1:200*Fs), 8),'g','LineWidth',2);
+hold on;   yline(-120, 'r--', 'LineWidth', 3); hold on;   yline(120, 'r--', 'LineWidth', 3);
+xlabel('Time (t) in sec'), ylabel('HbO conc.'); ax =gca; ax.FontSize = 16; ax.FontWeight = 'bold';
 
 % Visualzing the channel correlation matrix
-figure; imagesc(corr(raw1.data), [-1,1]); hold on; colorbar; ax =gca; ax.FontSize = 15; ax.FontWeight = 'bold';
-figure; imagesc(corr(raw2.data), [-1,1]); hold on; colorbar; ax =gca; ax.FontSize = 15; ax.FontWeight = 'bold';
-figure; imagesc(corr(raw3.data), [-1,1]); hold on; colorbar; ax =gca; ax.FontSize = 15; ax.FontWeight = 'bold';
+figure; imagesc(corr(hboRest1.data), [-1,1]); hold on; colormap('jet'); colorbar; ax =gca; ax.FontSize = 15; ax.FontWeight = 'bold';
+figure; imagesc(corr(hboRest2.data), [-1,1]); hold on; colormap('jet');colorbar; ax =gca; ax.FontSize = 15; ax.FontWeight = 'bold';
+figure; imagesc(corr(hboRest3.data), [-1,1]); hold on; colormap('jet'); colorbar; ax =gca; ax.FontSize = 15; ax.FontWeight = 'bold';
 
+figure; imagesc(corr(raw1.data), [-1,1]); hold on; colormap('jet'); colorbar; ax =gca; ax.FontSize = 15; ax.FontWeight = 'bold';
+figure; imagesc(corr(raw2.data), [-1,1]); hold on; colormap('jet');colorbar; ax =gca; ax.FontSize = 15; ax.FontWeight = 'bold';
+figure; imagesc(corr(raw3.data), [-1,1]); hold on; colormap('jet'); colorbar; ax =gca; ax.FontSize = 15; ax.FontWeight = 'bold';
 
 
 
