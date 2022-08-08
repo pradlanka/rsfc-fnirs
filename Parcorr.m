@@ -1,4 +1,4 @@
-% This code creates the figure 7 in the manuscript
+% This code creates the figure 9 in the manuscript
 
 % Creating folder to save results
 
