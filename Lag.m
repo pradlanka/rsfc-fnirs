@@ -1,4 +1,4 @@
-% This code creates the figures 9 & 10 in the manuscript
+% This code creates the figures 11 & 12 in the manuscript
 
 Curr_Folder = pwd; % Get path of working directory
 % Creating folder to save results
