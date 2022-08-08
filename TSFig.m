@@ -1,4 +1,4 @@
-% This code generates Fig 2 in the manuscript which shows the timeseries
+% This code generates Fig 3 in the manuscript which shows the timeseries
 % and the channel covariance
  
 Curr_Folder = pwd; % Get path of working directory
