@@ -25,6 +25,8 @@ Generates fig 1 in the manuscript. This code visually compares Pearson's correla
 #### **TSfig.m**
 Generates fig 3 in the manuscript. The code generates plots that show the changes in HbO conc. for the simulated data as well as the normalized covariance matrix for the channels. Rows show simulated data with just (A) temporal autocorrelation, (B) with both temporal autocorrelation and global systemic physiology, and (C) with temporal autocorrelation, global systemic physiology, and motion artifacts. It also generates the channel covariance matrix.
 
+#### **ACF_PSD.m**
+Generates fig 4 in the manuscript. The code generates power spectral density (PSD) and autocorrelation function (ACF) plots that show the effects of pre-whitening on the power spectrum as well as on the autocorrelation structure of the resting-state fNIRS data respectively. The plots are shown for simulated data with just (A) temporal autocorrelation, (B) with both temporal autocorrelation and global systemic physiology, and (C) with temporal autocorrelation, global systemic physiology, and motion artifacts. ACF and PSD plots both before are after pre-whitening are shown. Pre-whitening flattens the power spectrum and removes temporal autocorrelation
 
 ### Function folder:
 
