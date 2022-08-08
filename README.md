@@ -6,18 +6,18 @@
 ### Description of files
 
 #### **Dist_fig.m**:
-Generates figs 5,6,7 & 12 in the manuscript. This code compares several connectivity methods in simulated data with different statistical assumptions including, (i) Random data, (ii) Data with temporal autocorrelated noise, (iii) Data with both temporal autocorrelation and shared global signal, (iv) Data with temporal autocorrelation, shared global signal and motion artifacts.
+Generates figs 6,7,8 & 13 in the manuscript. This code compares several connectivity methods in simulated data with different statistical assumptions including, (i) Random data, (ii) Data with temporal autocorrelated noise, (iii) Data with both temporal autocorrelation and shared global signal, (iv) Data with temporal autocorrelation, shared global signal and motion artifacts.
 Connectivity methods examined include robust and non-robust versions of (a) Pearson's correlation, (b) AR correlation (pre-whitened correlation), (c) Partial correlation (short sep channels), (d) Modified multivariate granger causality (MVGC) with the zeroth lag term.
 The code generates the type-I error control curves,  (ii) receiver operating characteristic (ROC) curves as well as the expected vs actual null distribution plots.
 
 #### **Lag.m**:
-Generates figures 10 & 11 in the manuscript. This codes analyses the ability of MVGC, partial correlation and modified MVGC with zero lag to model lagged and zero lagged relationships between channels.
+Generates figures 11 & 12 in the manuscript. This codes analyses the ability of MVGC, partial correlation and modified MVGC with zero lag to model lagged and zero lagged relationships between channels.
 
 #### **Parcorr.m**:
-Generates fig 8 in the manuscript. This code compares AR partial correlation methods with PCA filtering using short separation, long and both short & long channels. Both AR partial correlation with robust regression and without robust regression are also compared.
+Generates fig 9 in the manuscript. This code compares AR partial correlation methods with PCA filtering using short separation, long and both short & long channels. Both AR partial correlation with robust regression and without robust regression are also compared.
 
 #### **Grangers.m**
-Generates fig 9 in the manuscript. This code compares MVGC methods controlling for short separation, long and both short & long channels after PCA filtering. Both MVGC with robust regression and without robust regression are also compared.
+Generates fig 10 in the manuscript. This code compares MVGC methods controlling for short separation, long and both short & long channels after PCA filtering. Both MVGC with robust regression and without robust regression are also compared.
 
 #### **parcorrfig.m**
 Generates fig 1 in the manuscript. This code visually compares Pearson's correlation, AR correlation & AR partial correlation with the ground truth in their effectiveness to correct for temporal autocorrelation and global signal-induced spatial covariance.
